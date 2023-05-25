@@ -1,0 +1,37 @@
+1.first of all we want to check the code I have so far and the description txt. Yes a lot of things are implemented already but we need
+ to add the remaining attributes, entities and methods. Because some of these things are missing. Also include inheritance, association, etc etc rules of OOP in their relationships
+2. Implement the missing parts and add comments everywhere in the code.
+3. I need in the main to be able to run a scenario where all entities are utilized. It can be any dummy scenario of your choice
+3.create a full class diagram and report which will explain briefly the business scenario and the logic of code
+
+[6:27 PM, 3/22/2022] Shahan Bhai:
+
+	Cenima (String address)
+	Room (int numberOfSeats, Cenima cenima)
+	Movie (int id, String name,String language,String classifications)
+	Ticket (Movie movie, String date, Room room, int seatNumber, double price)
+	MovieSchedule(Movie movie, String Datetime, Cenima cenima, Room room)
+	CashDesk(String deskNumber, Ticket soldtickets, double totalearnings)
+
+	User (name)
+	 inherites
+	Cashier (CashDesk cashdesk,double salary,double bonus)
+	Manager (Cenima cenima, vector<Movie> moviesBought, double totalearnings, double salary, double bonus, vector<MovieSchedule> moviesSchedule)
+	Customer (String password, vector<Ticket> tickets)
+
+
+	1 - Create a dummy cenima
+	2 - Create few dummy Rooms
+	3 - Create few dummy Movies
+	4 - Create few dummy tickets
+	5 - Create a dummy CashDesk
+	6 - Create a dummy cashier
+	7 - Create a dummy Manager
+	8 - Create few movies schedules
+	9 - Call add movie schedules from manager
+	10 - Create a dummy customer
+	11 - Create a dummy ticket for customer
+	12 - Call purchaseTicket with customer
+	13 - Call soldticket with CashDesk
+	14 - Call getTotalEarning of CashDesk
+	15 - Call getTotalEarning of manager

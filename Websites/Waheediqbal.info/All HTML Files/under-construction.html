@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<link rel="shortcut icon" type="image/ico" href="../images/icon.ico">
+<title> Oops - Under Construction </title>
+
+<style>
+
+.button {
+  border-radius: 4px;
+  background-color: #2766cc;
+  border: 3px solid black;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 280px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+</style>
+</head>
+
+<body>
+
+<center> 
+
+<img src="../images/under-construction.jpg" width="600px" height="400px"> <br>
+
+<p style="font-size:160%; font-family:verdana; color:#c204a5;">Sorry! This Website is still Under Construction.<br>You cannot Contact from here until it becomes Official.<br>Thanks for visiting!! </p>
+
+<a href="../index.html"> <button class="button"><span> HomePage </span></button></a>
+<a href="http://www.waheediqbal.info/" target="_blank"> <button class="button"><span> Official Website </span></button></a>
+
+</center>
+
+</body>
+</html>
