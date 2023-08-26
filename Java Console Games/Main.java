@@ -1,39 +1,79 @@
-1 --------------------------------------
+/*
+ * Question 1
+ */
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.function.*;
+import java.util.regex.*;
+import java.util.stream.*;
+import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
 
-import java.util.ArrayList;
-import java.util.List;
 
-public class Main {
-    public static void main(String[] args) {
-        List<Integer> arr = new ArrayList<>();
-        arr.add(1);
-        arr.add(3);
-        arr.add(1);
-        System.out.println("Array: " + arr);
 
-        int balancedIndex = balancedSum(arr);
-        System.out.println("Balanced index: " + balancedIndex);
-    }
+class Result {
+
+    /*
+     * Complete the 'balancedSum' function below.
+     *
+     * The function is expected to return an INTEGER.
+     * The function accepts INTEGER_ARRAY arr as parameter.
+     */
 
     public static int balancedSum(List<Integer> arr) {
-        int totalSum = 0;
-        for (int num : arr) {
-            totalSum += num;
+        int sum = 0, lSum = 0, i, n;
+        for(i = 0; i < arr.size(); i++)
+        {
+            sum += arr.get(i);
         }
-        int leftSum = 0;
-        for (int i = 0; i < arr.size(); i++) {
-            totalSum -= arr.get(i);
-            if (leftSum == totalSum) {
+        
+        for(i = 0; i < arr.size(); i++)
+        {
+            n = arr.get(i);
+            sum -= n;
+            if(sum == lSum)
                 return i;
-            }
-            leftSum += arr.get(i);
+            lSum += n;
         }
-        return -1;
+        return -9;
     }
 
 }
 
-2 -------------------------------
+public class Solution {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+
+        int arrCount = Integer.parseInt(bufferedReader.readLine().trim());
+
+        List<Integer> arr = IntStream.range(0, arrCount).mapToObj(i -> {
+            try {
+                return bufferedReader.readLine().replaceAll("\\s+$", "");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        })
+            .map(String::trim)
+            .map(Integer::parseInt)
+            .collect(toList());
+
+        int result = Result.balancedSum(arr);
+
+        bufferedWriter.write(String.valueOf(result));
+        bufferedWriter.newLine();
+
+        bufferedReader.close();
+        bufferedWriter.close();
+    }
+}
+/*
+ * Question 2
+ */
 /*
 Enter your query below.
 Please append a semicolon ";" at the end of the query
@@ -45,28 +85,27 @@ GROUP BY c.id, c.name
 ORDER BY goals DESC, c.id ASC;
 
 
-3 ------------------------------------
-using System.CodeDom.Compiler;
-using System.Collections.Generic;
-using System.Collections;
-using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.Serialization;
-using System.Text.RegularExpressions;
-using System.Text;
-using System;
-using System.Net;
-using System.Net.Http;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+/*
+ * Question 3
+ */
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.function.*;
+import java.util.regex.*;
+import java.util.stream.*;
+import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
+import java.net.*;
+import org.json.simple.*;
+import org.json.simple.parser.*;
 
 
-class Result
-{
+
+class Result {
 
     /*
      * Complete the 'getDiscountedPrice' function below.
@@ -76,46 +115,54 @@ class Result
      * API URL: https://jsonmock.hackerrank.com/api/inventory?barcode=<barcode>
      */
 
-    public static int getDiscountedPrice(int barcode)
-    {
-        string apiUrl = $"https://jsonmock.hackerrank.com/api/inventory?barcode={barcode}";
-        using (HttpClient client = new HttpClient())
-        {
-            HttpResponseMessage response = client.GetAsync(apiUrl).Result;
-            if (response.IsSuccessStatusCode)
-            {
-                string responseBody = response.Content.ReadAsStringAsync().Result;
-                JObject jsonResponse = JObject.Parse(responseBody);
-                JArray dataArray = (JArray)jsonResponse["data"];
-                if (dataArray.Count == 1)
-                {
-                    double price = (double)dataArray[0]["price"];
-                    double discount = (double)dataArray[0]["discount"];
+    public static int getDiscountedPrice(int barcode) {
+        try {
+            URL url = new URL("https://jsonmock.hackerrank.com/api/inventory?barcode=" + barcode);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
 
-                    double discountedPrice = price - ((discount / 100) * price);
-                    return (int)Math.Round(discountedPrice);
-                }
+            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            String line;
+            StringBuilder response = new StringBuilder();
+
+            while ((line = reader.readLine()) != null) {
+                response.append(line);
             }
-        }
+            reader.close();
 
-        return -1;
+            JSONParser parser = new JSONParser();
+            JSONObject jsonResponse = (JSONObject) parser.parse(response.toString());
+            JSONArray dataArray = (JSONArray) jsonResponse.get("data");
+
+            if (dataArray.size() != 1) {
+                return -1;
+            }
+            
+            JSONObject item = (JSONObject) dataArray.get(0);
+            double price = (long) item.get("price");
+            double discount = (long) item.get("discount");
+            double discountedPrice = price - ((discount / 100.0) * price);
+            return (int) Math.round(discountedPrice);
+        } catch (Exception e) {
+            return -1;
+        }
     }
 
 }
 
-class Solution
-{
-    public static void Main(string[] args)
-    {
-        TextWriter textWriter = new StreamWriter(@System.Environment.GetEnvironmentVariable("OUTPUT_PATH"), true);
+public class Solution {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
 
-        int barcode = Convert.ToInt32(Console.ReadLine().Trim());
+        int barcode = Integer.parseInt(bufferedReader.readLine().trim());
 
         int result = Result.getDiscountedPrice(barcode);
 
-        textWriter.WriteLine(result);
+        bufferedWriter.write(String.valueOf(result));
+        bufferedWriter.newLine();
 
-        textWriter.Flush();
-        textWriter.Close();
+        bufferedReader.close();
+        bufferedWriter.close();
     }
 }
