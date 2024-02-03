@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".activities.HomeScreen">
+
+    <TextView
+        android:id="@+id/recievedData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/empty"
+        android:textAlignment="center"
+        android:textSize="50sp"
+        />
+
+    <Button
+        android:id="@+id/btnCalculator"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="@string/open_calculator"
+        android:layout_marginTop="10dp"
+        />
+
+    <Button
+        android:id="@+id/btnRecycler"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="@string/open_input_form"
+        android:layout_marginTop="10dp"
+    />
+
+    <Button
+        android:id="@+id/btnFragment"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/move_to_fragments"
+    />
+
+</LinearLayout>

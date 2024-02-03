@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="8"
+    android:background="@drawable/homebackground"
+    android:gravity="center"
+    tools:context=".View.Activities.HomeScreenActivity">
+
+    <Button
+        android:id="@+id/calculatorBtn"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:layout_gravity="center"
+        android:layout_marginTop="-30dp"
+        android:padding="15dp"
+        android:text="@string/open_calculator"
+        />
+
+    <Button
+        android:id="@+id/randomJokeBtn"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:padding="15dp"
+        android:text="@string/get_random_joke"
+        />
+
+    <Button
+        android:id="@+id/randomJokeByTypeBtn"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:padding="15dp"
+        android:text="@string/get_random_joke_by_type"
+        />
+
+    <Button
+        android:id="@+id/tenRandomJokesBtn"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:padding="15dp"
+        android:text="@string/get_10_random_jokes"
+        />
+
+    <Button
+        android:id="@+id/allJokesBtn"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:padding="15dp"
+        android:text="@string/view_all_jokes"
+        />
+
+</LinearLayout>
